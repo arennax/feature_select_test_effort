@@ -5,7 +5,7 @@ from experiments.tuned_learners import *
 from data.data_to_use import *
 import random
 
-data = data_albrecht()
+data = data_miyazaki()
 repeats = 20
 
 
@@ -16,7 +16,7 @@ if __name__ == '__main__':
     time1 = time.time()
     for i in range(repeats):
         # list_CART.append(CART_DE(data)[0])
-        list_CART.append(CART_FLASH(data))
+        list_CART.append(SVM(data)[1])
     run_time1 = str(time.time() - time1)
 
     flat_list = np.array(list_CART).flatten()

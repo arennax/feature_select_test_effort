@@ -3,7 +3,7 @@ from data.data_to_use import *
 from experiments.useful_tools import KFold_df, normalize, mre_calc, sa_calc
 from sklearn.tree import DecisionTreeRegressor
 from sklearn.ensemble import RandomForestRegressor
-from sklearn.svm import LinearSVR
+from sklearn.svm import SVR
 from sklearn import neighbors
 
 
@@ -54,7 +54,7 @@ def KNN(dataset, n_neighbors = 3):
     return mre_list, sa_list
 
 
-def SVM(dataset, random_state=0, tol=1e-5):
+def SVM(dataset):
 
     dataset = normalize(dataset)
     mre_list = []
@@ -65,7 +65,7 @@ def SVM(dataset, random_state=0, tol=1e-5):
         test_input = test.iloc[:, :-1]
         test_actual_effort = test.iloc[:, -1]
 
-        model = LinearSVR(random_state, tol)
+        model = SVR()
         model.fit(train_input, train_actual_effort)
         test_predict_effort = model.predict(test_input)
         test_predict_Y = test_predict_effort
