@@ -28,10 +28,7 @@ def FLASH(dataset):
         for i in range(len(modeling_pool)):
             List_X.append(convert(modeling_pool[i]))
             temp = convert(modeling_pool[i])
-            List_Y.append(CART(data_albrecht(), a=temp[0], b=temp[1], c=temp[2]))
-
-        # print(List_X)
-        # print(List_Y)
+            List_Y.append(np.mean(CART(dataset, a=temp[0], b=temp[1], c=temp[2])[0]))
 
         ### Upper level optimizier (cart)
         upper_model = DecisionTreeRegressor()
@@ -56,7 +53,7 @@ def FLASH(dataset):
         modeling_pool += [new_member]
         new_config = convert(new_member)
         # print(new_config)
-        new_member_fitness = CART(dataset, a=new_config[0], b=new_config[1], c=new_config[2])
+        new_member_fitness = np.mean(CART(dataset, a=new_config[0], b=new_config[1], c=new_config[2]))
 
         if new_member_fitness > np.min(List_Y):   ######### for MRE
         # if new_member_fitness < np.max(List_Y):   ######### for SA
@@ -81,4 +78,4 @@ def FLASH(dataset):
 
 
 if __name__ == '__main__':
-    print(FLASH(data_finnish()))
+    print(FLASH(data_albrecht()))

@@ -5,7 +5,7 @@ from experiments.tuned_learners import *
 from data.data_to_use import *
 import random
 
-data = data_finnish()
+data = data_albrecht()
 repeats = 20
 
 
@@ -15,7 +15,8 @@ if __name__ == '__main__':
 
     time1 = time.time()
     for i in range(repeats):
-        list_CART.append(CART_DE(data)[0])
+        # list_CART.append(CART_DE(data)[0])
+        list_CART.append(CART_FLASH(data))
     run_time1 = str(time.time() - time1)
 
     flat_list = np.array(list_CART).flatten()
@@ -27,6 +28,6 @@ if __name__ == '__main__':
     print("runtime for CART0:", run_time1)
 
     with open("./output/test_sk_mre.txt", "w") as output:
-        output.write("CART0" + '\n')
+        # output.write("CART0" + '\n')
         for i in sorted(cart0_output):
             output.write(str(i)+" ")
