@@ -6,7 +6,7 @@ from experiments.tuned_learners import *
 from data.data_to_use import *
 import random
 
-data = data_miyazaki()
+data = data_cocomo_nasa_1()
 repeats = 20
 methods = 1  # "0" for MRE, "1" for SA
 

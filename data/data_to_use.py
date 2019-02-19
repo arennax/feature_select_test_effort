@@ -413,4 +413,4 @@ if __name__ == '__main__':
     # latex_print_all_details()
     # print(data_kitchenham().shape)
     # latex_print_detail(data_albrecht)
-    print(data_cocomo81())
+    print(data_cocomo_nasa_1())
