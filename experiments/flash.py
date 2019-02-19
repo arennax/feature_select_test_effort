@@ -59,7 +59,7 @@ def FLASH(dataset):
         # if new_member_fitness < np.max(List_Y):   ######### for SA
             life -= 1
 
-        if count > 100:
+        if count > 200:
             jump = False
 
     final_X = []
