@@ -24,12 +24,12 @@ def de(fun_opt, bounds, mut=0.8, crossp=0.7, popsize=20, itrs=10):
             trial = np.where(cross_points, mutant, pop[j])
             trial_denorm = min_b + trial * diff
             f = fun_opt(*trial_denorm)
-            # if f < fitness[j]:  ####### MRE
-            if f > fitness[j]:  ####### SA
+            if f < fitness[j]:  ####### MRE
+                # if f > fitness[j]:  ####### SA
                 fitness[j] = f
                 pop[j] = trial
-                # if f < fitness[best_idx]:  ####### MRE
-                if f > fitness[best_idx]:  ####### SA
+                if f < fitness[best_idx]:  ####### MRE
+                    # if f > fitness[best_idx]:  ####### SA
                     best_idx = j
                     best = trial_denorm
         # yield best, fitness[best_idx]
@@ -58,8 +58,8 @@ def flash(train_input, train_actual_effort, test_input, test_actual_effort, pop_
         test_predict_Y = test_predict_effort
         test_actual_Y = test_actual_effort.values
 
-        # List_Y.append(mre_calc(test_predict_Y, test_actual_Y))  ######### for MRE flash
-        List_Y.append(sa_calc(test_predict_Y, test_actual_Y))  ######### for SA flash
+        List_Y.append(mre_calc(test_predict_Y, test_actual_Y))  ######### for MRE flash
+        # List_Y.append(sa_calc(test_predict_Y, test_actual_Y))  ######### for SA flash
 
     remain_pool = all_case - set(modeling_pool)
     test_list = []
@@ -74,8 +74,8 @@ def flash(train_input, train_actual_effort, test_input, test_actual_effort, pop_
         candidate = random.sample(test_list, 1)
         test_list.remove(candidate[0])
         candi_pred_value = upper_model.predict(candidate)
-        # if candi_pred_value < np.median(List_Y):  ######### for MRE flash
-        if candi_pred_value > np.median(List_Y):  ######### for SA flash
+        if candi_pred_value < np.median(List_Y):  ######### for MRE flash
+            # if candi_pred_value > np.median(List_Y):  ######### for SA flash
             List_X.append(candidate[0])
             candi_config = candidate[0]
             candi_model = DecisionTreeRegressor(max_depth=candi_config[0], min_samples_leaf=candi_config[1],
@@ -84,14 +84,14 @@ def flash(train_input, train_actual_effort, test_input, test_actual_effort, pop_
             candi_pred_Y = candi_model.predict(test_input)
             candi_actual_Y = test_actual_effort.values
 
-            # List_Y.append(mre_calc(candi_pred_Y, candi_actual_Y))  ######### for MRE flash
-            List_Y.append(sa_calc(candi_pred_Y, candi_actual_Y))  ######### for SA flash
+            List_Y.append(mre_calc(candi_pred_Y, candi_actual_Y))  ######### for MRE flash
+            # List_Y.append(sa_calc(candi_pred_Y, candi_actual_Y))  ######### for SA flash
 
         else:
             life -= 1
 
-    # return np.min(List_Y)  ########## min for MRE
-    return np.max(List_Y)  ########## min for SA
+    return np.min(List_Y)  ########## min for MRE
+    # return np.max(List_Y)  ########## min for SA
 
 
 if __name__ == '__main__':

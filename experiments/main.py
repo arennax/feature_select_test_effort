@@ -8,7 +8,7 @@ import random
 
 data = data_cocomo_nasa_1()
 repeats = 20
-methods = 1  # "0" for MRE, "1" for SA
+methods = 0  # "0" for MRE, "1" for SA
 
 
 if __name__ == '__main__':

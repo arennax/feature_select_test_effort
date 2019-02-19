@@ -25,15 +25,15 @@ def CART_DE(dataset):
             test_actual_Y = test_actual_effort.values
             # mre_list.append(mre_calc(test_predict_Y, test_actual_Y))
             # sa_list.append(sa_calc(test_predict_Y, test_actual_Y))
-            # return mre_calc(test_predict_Y, test_actual_Y)  ############# MRE
-            return sa_calc(test_predict_Y, test_actual_Y)  ############# SA
+            return mre_calc(test_predict_Y, test_actual_Y)  ############# MRE
+            # return sa_calc(test_predict_Y, test_actual_Y)  ############# SA
 
         output = de(cart_builder, bounds=[(1, 12), (0.00001, 0.5), (0.00001, 1)])
-        # mre_list.append(output)  ############# MRE
-        sa_list.append(output)  ############# SA
+        mre_list.append(output)  ############# MRE
+        # sa_list.append(output)  ############# SA
 
-    # return mre_list  ############# MRE
-    return sa_list  ############# SA
+    return mre_list  ############# MRE
+    # return sa_list  ############# SA
 
 
 def CART_FLASH(dataset):
